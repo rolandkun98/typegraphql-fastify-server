@@ -20,6 +20,44 @@ const configObject = convict({
       env: 'SERVER_PORT',
     },
   },
+  ENVIRONMENT: {
+    doc: 'Application environment',
+    format: String,
+    default: 'developer',
+    env: 'ENVIRONMENT',
+  },
+  DATABASE: {
+    HOST: {
+      doc: 'Database host',
+      format: String,
+      default: '',
+      env: 'DATABASE_HOST',
+    },
+    PORT: {
+      doc: 'Database port',
+      format: Number,
+      default: 5432,
+      env: 'DATABASE_PORT',
+    },
+    USERNAME: {
+      doc: 'Database username',
+      format: String,
+      default: '',
+      env: 'DATABASE_USERNAME',
+    },
+    PASSWORD: {
+      doc: 'Database password',
+      format: String,
+      default: '',
+      env: 'DATABASE_PASSWORD',
+    },
+    NAME: {
+      doc: 'Database name',
+      format: String,
+      default: '',
+      env: 'DATABASE_NAME',
+    },
+  },
 });
 
 export const config = configObject.getProperties();

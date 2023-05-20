@@ -7,7 +7,11 @@
   "author": "rolikun <roland.kun98@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --require dotenv/config src/server.ts dotenv_config_path=../../.env"
+    "dev": "nodemon --require dotenv/config src/server.ts dotenv_config_path=../../.env",
+    "migration:generate": "npx typeorm-ts-node-esm migration:generate ./src/migrations/generated-migration -d ./src/framework/typeorm/data-source.ts",
+    "migration:create": "typeorm migration:create ./src/migrations/created-migration",
+    "migration:up": "npx typeorm-ts-node-esm migration:run -d ./src/framework/typeorm/data-source.ts",
+    "migration:down": "npx typeorm-ts-node-esm migration:revert -d ./src/framework/typeorm/data-source.ts"
   },
   "devDependencies": {
     "@types/convict": "6.1.1",
@@ -25,6 +29,7 @@
     "fastify": "4.17.0",
     "graphql": "16.6.0",
     "pg": "8.11.0",
+    "pino": "8.14.1",
     "reflect-metadata": "0.1.13",
     "type-graphql": "2.0.0-beta.2",
     "typeorm": "0.3.16"

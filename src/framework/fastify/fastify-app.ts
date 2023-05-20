@@ -6,14 +6,17 @@ import {
   fastifyApolloDrainPlugin,
   fastifyApolloHandler,
 } from '@as-integrations/fastify';
+import { Logger } from 'pino';
 
 export const createFastifyApp = async ({
   apolloServer,
+  logger,
 }: {
   apolloServer: ApolloServer;
+  logger: Logger;
 }) => {
   const fastifyApp = fastify({
-    logger: true,
+    logger: logger.child({ type: 'fastify' }),
   });
 
   apolloServer.addPlugin(fastifyApolloDrainPlugin(fastifyApp));
