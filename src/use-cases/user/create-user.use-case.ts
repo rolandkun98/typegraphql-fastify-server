@@ -16,7 +16,6 @@ export type CreateUserUseCase = (
 export const createUserUseCaseFactory =
   ({ connection }: { connection: DataSource }): CreateUserUseCase =>
   async (input) => {
-    const newUser = await connection.getRepository(User).create(input);
-    await connection.getRepository(User).save(newUser);
+    const newUser = await connection.getRepository(User).create(input).save();
     return newUser;
   };

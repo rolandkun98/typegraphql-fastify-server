@@ -1,18 +1,19 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors';
 import { config } from '../../config';
-import { ApolloServer } from '@apollo/server';
 import {
   fastifyApolloDrainPlugin,
   fastifyApolloHandler,
 } from '@as-integrations/fastify';
 import { Logger } from 'pino';
+import { TApolloServer } from '../apollo/apollo-server';
+import { apolloContextFunction } from '../apollo/apollo-context';
 
 export const createFastifyApp = async ({
   apolloServer,
   logger,
 }: {
-  apolloServer: ApolloServer;
+  apolloServer: TApolloServer;
   logger: Logger;
 }) => {
   const fastifyApp = fastify({
@@ -30,7 +31,9 @@ export const createFastifyApp = async ({
   fastifyApp.route({
     url: '/api/graphql',
     method: ['POST', 'OPTIONS', 'GET'],
-    handler: fastifyApolloHandler(apolloServer),
+    handler: fastifyApolloHandler(apolloServer, {
+      context: apolloContextFunction,
+    }),
   });
 
   return fastifyApp;

@@ -1,7 +1,16 @@
-import { Resolver, Mutation, Arg, InputType, Field, Query } from 'type-graphql';
+import {
+  Resolver,
+  Mutation,
+  Arg,
+  InputType,
+  Field,
+  Query,
+  Ctx,
+} from 'type-graphql';
 import { User } from './user.model';
 import { CreateUserUseCase } from '../../use-cases/user/create-user.use-case';
 import { GetAllUserUseCase } from '../../use-cases/user/get-all-user.use-case';
+import { ApolloContext } from '../../framework/apollo/apollo-context';
 
 @InputType()
 class CreateUserInput {
@@ -25,7 +34,10 @@ export const userResolverFactory = ({
   @Resolver(User)
   class UserResolver {
     @Mutation(() => User)
-    async createUser(@Arg('args') args: CreateUserInput): Promise<User> {
+    async createUser(
+      @Arg('args') args: CreateUserInput,
+      @Ctx() ctx: ApolloContext
+    ): Promise<User> {
       return await createUserUseCase(args);
     }
 

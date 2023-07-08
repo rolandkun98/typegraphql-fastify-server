@@ -57,6 +57,12 @@ const configObject = convict({
       default: '',
       env: 'DATABASE_NAME',
     },
+    SYNCHRONIZE: {
+      doc: 'Database schema should be auto created on every application launch.',
+      format: Boolean,
+      default: false,
+      env: 'DATABASE_SYNCHRONIZE',
+    },
   },
 });
 
