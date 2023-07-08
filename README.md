@@ -51,3 +51,11 @@ yarn migration:down
     - Create a new folder with the entity name
     - Create use case files with `use-case-name.use-case.ts` name
     - Export the use case factories and import into the `use-cases.ts` file
+
+## API playground
+
+There is an API playgroud on the `/api/graphql` route
+
+## Database synchronize
+
+To turn on database auto synchronize, set the `DATABASE_SYNCHRONIZE` env var to true. If it is not set in the .env file, the default value is false.
