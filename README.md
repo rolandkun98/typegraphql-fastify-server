@@ -1,4 +1,4 @@
-# Typegraphql fastify server
+# TypeGraphQL Fastify Server
 
 ## About the project
 
