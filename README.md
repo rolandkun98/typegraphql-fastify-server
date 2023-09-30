@@ -1,4 +1,15 @@
-# BASE SKELETON
+# Typegraphql fastify server
+
+## About the project
+
+The purpose of the project is to create an easily scalable, maintainable, and fast backend server with GraphQL, TypeORM, and Fastify.
+
+## Stacks
+
+- TypeScript
+- Fastify
+- Apollo GraphQL
+- TypeORM
 
 ## Scripts
 
@@ -8,7 +19,7 @@
 yarn dev
 ```
 
-- Generate migration file according to `.model.ts` files
+- Generate migration files
 
 ```
 yarn migration:generate
@@ -32,30 +43,6 @@ yarn migration:up
 yarn migration:down
 ```
 
-## Folder Structure
-
-- enums
-  - Here are the common application enums
-- framework
-  - Here are the files thats build the application framework
-- migrations
-  - Here are the generated & created migration files
-- typegraphql
-  - Here are the typegraphql entities with models and resolvers. To create new entities follow the below steps:
-    - Create a new folder with the new entity name
-    - Create an `entity-name.model.ts` & `entity-name.resolver.ts` file into the new folder
-    - Export the class from the `entity-name.model.ts` file and import into the `entities.ts`
-    - Export the resolver factory function from the `entity-name.resolver.ts` file and import into the `resolvers.ts`
-- use-cases
-  - Here are the use cases for each entities. To create new use cases for an entity follow the below steps:
-    - Create a new folder with the entity name
-    - Create use case files with `use-case-name.use-case.ts` name
-    - Export the use case factories and import into the `use-cases.ts` file
-
 ## API playground
 
-There is an API playgroud on the `/api/graphql` route
-
-## Database synchronize
-
-To turn on database auto synchronize, set the `DATABASE_SYNCHRONIZE` env var to true. If it is not set in the .env file, the default value is false.
+There is an API playground on the `/api/graphql` route.
