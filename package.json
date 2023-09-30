@@ -1,7 +1,7 @@
 {
-  "name": "base-skeleton",
+  "name": "typegraphql-fastify-server",
   "version": "1.0.0",
-  "description": "This project is a base backend skeleton",
+  "description": "Typegraphql Fastify Server",
   "main": "index.js",
   "repository": "git@github.com:rolandkun98/base-skeleton.git",
   "author": "rolikun <roland.kun98@gmail.com>",
