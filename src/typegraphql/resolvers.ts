@@ -3,8 +3,7 @@ import { userResolverFactory } from './user/user.resolver';
 
 export const resolversFactory = ({ useCases }: { useCases: TUseCases }) => {
   const UserResolver = userResolverFactory({
-    createUserUseCase: useCases.createUserUseCase,
-    getAllUserUseCase: useCases.getAllUserUseCase,
+    ...useCases,
   });
 
   return {
