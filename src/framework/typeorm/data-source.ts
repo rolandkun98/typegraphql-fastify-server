@@ -2,7 +2,7 @@ import { DataSource } from 'typeorm';
 import { Entities } from '../../typegraphql/entities';
 import { config } from '../../config';
 
-export const AppDataSource = new DataSource({
+export const appDataSource = new DataSource({
   type: 'postgres',
   host: config.DATABASE.HOST,
   port: config.DATABASE.PORT,
