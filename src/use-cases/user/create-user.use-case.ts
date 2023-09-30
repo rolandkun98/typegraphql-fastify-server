@@ -1,4 +1,4 @@
-import { DataSource } from 'typeorm';
+import { EntityManager } from 'typeorm';
 import { User } from '../../typegraphql/user/user.model';
 
 interface CreateUserUseCaseInput {
@@ -14,8 +14,18 @@ export type CreateUserUseCase = (
 ) => Promise<CreateUserUseCaseOutput>;
 
 export const createUserUseCaseFactory =
-  ({ connection }: { connection: DataSource }): CreateUserUseCase =>
+  ({ entityManager }: { entityManager: EntityManager }): CreateUserUseCase =>
   async (input) => {
-    const newUser = await connection.getRepository(User).create(input).save();
+    const existingUser = await entityManager
+      .getRepository(User)
+      .findOne({ where: { email: input.email } });
+    if (existingUser) {
+      throw new Error('The email address is already used');
+    }
+
+    const newUser = await entityManager
+      .getRepository(User)
+      .create(input)
+      .save();
     return newUser;
   };

@@ -1,10 +1,14 @@
-import { DataSource } from 'typeorm';
+import { EntityManager } from 'typeorm';
 import { createUserUseCaseFactory } from './user/create-user.use-case';
 import { getAllUserUseCaseFactory } from './user/get-all-user.use-case';
 
-export const useCasesFactory = ({ connection }: { connection: DataSource }) => {
-  const createUserUseCase = createUserUseCaseFactory({ connection });
-  const getAllUserUseCase = getAllUserUseCaseFactory({ connection });
+export const useCasesFactory = ({
+  entityManager,
+}: {
+  entityManager: EntityManager;
+}) => {
+  const createUserUseCase = createUserUseCaseFactory({ entityManager });
+  const getAllUserUseCase = getAllUserUseCaseFactory({ entityManager });
 
   return {
     createUserUseCase,

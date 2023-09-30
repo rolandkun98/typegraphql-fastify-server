@@ -1,4 +1,4 @@
-import { DataSource } from 'typeorm';
+import { DataSource, EntityManager } from 'typeorm';
 import { User } from '../../typegraphql/user/user.model';
 
 type GetAllUserUseCaseOutput = User[];
@@ -6,8 +6,8 @@ type GetAllUserUseCaseOutput = User[];
 export type GetAllUserUseCase = () => Promise<GetAllUserUseCaseOutput>;
 
 export const getAllUserUseCaseFactory =
-  ({ connection }: { connection: DataSource }): GetAllUserUseCase =>
+  ({ entityManager }: { entityManager: EntityManager }): GetAllUserUseCase =>
   async () => {
-    const users = await connection.getRepository(User).find();
+    const users = await entityManager.getRepository(User).find();
     return users;
   };
