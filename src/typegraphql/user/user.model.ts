@@ -30,18 +30,18 @@ export class User extends BaseEntity {
   lastName: string;
 
   @Field(() => String)
-  @Column({ type: 'text', name: 'email', nullable: false })
+  @Column({ type: 'text', name: 'email', nullable: false, unique: true })
   email: string;
 
   @Field(() => Date)
-  @CreateDateColumn({ type: 'timestamptz' })
+  @CreateDateColumn({ type: 'timestamptz', name: 'created_at' })
   createdAt: Date;
 
   @Field(() => Date)
-  @UpdateDateColumn({ type: 'timestamptz' })
+  @UpdateDateColumn({ type: 'timestamptz', name: 'updated_at' })
   updatedAt: Date;
 
   @Field(() => Date, { nullable: true })
-  @DeleteDateColumn({ type: 'timestamptz' })
+  @DeleteDateColumn({ type: 'timestamptz', name: 'deleted_at' })
   deletedAt: Date;
 }
