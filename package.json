@@ -1,9 +1,9 @@
 {
   "name": "typegraphql-fastify-server",
   "version": "1.0.0",
-  "description": "Typegraphql Fastify Server",
+  "description": "TypeGraphQL Fastify Server",
   "main": "index.js",
-  "repository": "git@github.com:rolandkun98/base-skeleton.git",
+  "repository": "git@github.com:rolandkun98/typegraphql-fastify-server.git",
   "author": "rolikun <roland.kun98@gmail.com>",
   "license": "MIT",
   "scripts": {
