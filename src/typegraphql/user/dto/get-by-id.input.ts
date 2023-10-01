@@ -4,6 +4,6 @@ import { IsNotEmpty } from 'class-validator';
 @InputType()
 export class GetUserByIdInput {
   @IsNotEmpty()
-  @Field((type) => ID)
+  @Field(() => ID)
   id: string;
 }
