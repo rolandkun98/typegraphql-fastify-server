@@ -2,7 +2,7 @@ import { Resolver, Mutation, Arg, Query, Ctx } from 'type-graphql';
 import { User } from './user.model';
 import { CreateUserUseCase } from '../../use-cases/user/create-user.use-case';
 import { GetAllUserUseCase } from '../../use-cases/user/get-all-user.use-case';
-// import { ApolloContext } from '../../framework/apollo/apollo-context';
+import { ApolloContext } from '../../framework/apollo/apollo-context';
 import { CreateUserInput } from './dto/create.input';
 import { GetUserByIdUseCase } from '../../use-cases/user/get-user-by-id.use-case';
 import { GetUserByIdInput } from './dto/get-by-id.input';
@@ -20,10 +20,10 @@ export const userResolverFactory = ({
   class UserResolver {
     @Mutation(() => User)
     async createUser(
-      @Arg('args') args: CreateUserInput
-      // @Ctx() ctx: ApolloContext
+      @Arg('args') args: CreateUserInput,
+      @Ctx() ctx: ApolloContext
     ): Promise<User> {
-      return await createUserUseCase(args);
+      return await createUserUseCase(args, ctx);
     }
 
     @Query(() => [User])
@@ -32,8 +32,11 @@ export const userResolverFactory = ({
     }
 
     @Query(() => User)
-    async getUserById(@Arg('args') args: GetUserByIdInput): Promise<User> {
-      return await getUserByIdUseCase(args);
+    async getUserById(
+      @Arg('args') args: GetUserByIdInput,
+      @Ctx() ctx: ApolloContext
+    ): Promise<User> {
+      return await getUserByIdUseCase(args, ctx);
     }
   }
 
