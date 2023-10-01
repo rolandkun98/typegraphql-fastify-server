@@ -9,7 +9,7 @@ export const createApolloServer = async ({
   resolvers: TResolvers;
 }) => {
   const schema = await buildSchema({
-    resolvers: [resolvers.UserResolver],
+    resolvers: [resolvers.UserResolver, resolvers.EventResolver],
     validate: true,
   });
 
