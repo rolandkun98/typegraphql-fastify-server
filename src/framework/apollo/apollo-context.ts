@@ -1,11 +1,12 @@
 import { ApolloFastifyContextFunction } from '@as-integrations/fastify';
+import { UserRole } from '../../enums/user-roles';
 
 export interface ApolloContext {
-  test: string;
+  role: UserRole;
 }
 
 export const apolloContextFunction: ApolloFastifyContextFunction<
   ApolloContext
 > = async (request, _reply) => ({
-  test: request.headers.test as string,
+  role: request.headers.role as UserRole,
 });
