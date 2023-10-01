@@ -1,8 +1,9 @@
 import { EntityManager } from 'typeorm';
 import { User } from '../../typegraphql/user/user.model';
 import { GetUserByIdInput } from '../../typegraphql/user/dto/get-by-id.input';
+import { UseCase } from '../use-case.type';
 
-export type GetUserByIdUseCase = (input: GetUserByIdInput) => Promise<User>;
+export type GetUserByIdUseCase = UseCase<GetUserByIdInput, User>;
 
 export const getUserByIdUseCaseFactory =
   ({ entityManager }: { entityManager: EntityManager }): GetUserByIdUseCase =>
