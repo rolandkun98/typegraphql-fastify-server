@@ -10,7 +10,7 @@ export const getUserByIdUseCaseFactory =
   async (input) => {
     const user = await entityManager
       .getRepository(User)
-      .findOne({ where: { id: input.id } });
+      .findOne({ where: { id: input.id }, relations: ['createdEvents'] });
     if (!user) {
       throw new Error('The user does not exist!');
     }
