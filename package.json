@@ -26,6 +26,7 @@
     "@apollo/server": "4.7.1",
     "@as-integrations/fastify": "2.0.0",
     "@fastify/cors": "8.2.1",
+    "class-validator": "0.14.0",
     "fastify": "4.17.0",
     "graphql": "16.6.0",
     "pg": "8.11.0",
