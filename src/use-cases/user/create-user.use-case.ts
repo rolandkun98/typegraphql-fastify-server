@@ -1,17 +1,8 @@
 import { EntityManager } from 'typeorm';
 import { User } from '../../typegraphql/user/user.model';
+import { CreateUserInput } from '../../typegraphql/user/dto/create.input';
 
-interface CreateUserUseCaseInput {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-
-type CreateUserUseCaseOutput = User;
-
-export type CreateUserUseCase = (
-  input: CreateUserUseCaseInput
-) => Promise<CreateUserUseCaseOutput>;
+export type CreateUserUseCase = (input: CreateUserInput) => Promise<User>;
 
 export const createUserUseCaseFactory =
   ({ entityManager }: { entityManager: EntityManager }): CreateUserUseCase =>
