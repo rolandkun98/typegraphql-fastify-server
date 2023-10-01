@@ -7,13 +7,14 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   BaseEntity,
-  OneToMany,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
-import { Event } from '../event/event.model';
+import { User } from '../user/user.model';
 
 @ObjectType()
-@Entity({ name: 'users' })
-export class User extends BaseEntity {
+@Entity({ name: 'events' })
+export class Event extends BaseEntity {
   @Field(() => ID)
   @PrimaryColumn({
     type: 'uuid',
@@ -23,17 +24,31 @@ export class User extends BaseEntity {
   })
   id: string;
 
-  @Field(() => String)
-  @Column({ type: 'text', name: 'first_name', nullable: false })
-  firstName: string;
+  @Field(() => User)
+  @ManyToOne(() => User, { nullable: false })
+  @JoinColumn({ name: 'created_by' })
+  createdBy: User;
 
   @Field(() => String)
-  @Column({ type: 'text', name: 'last_name', nullable: false })
-  lastName: string;
+  @Column({ type: 'varchar', name: 'title', nullable: false, length: 50 })
+  title: string;
 
   @Field(() => String)
-  @Column({ type: 'text', name: 'email', nullable: false, unique: true })
-  email: string;
+  @Column({
+    type: 'varchar',
+    name: 'description',
+    nullable: false,
+    length: 300,
+  })
+  description: string;
+
+  @Field(() => Date)
+  @Column({ type: 'timestamptz', name: 'starting_at', nullable: false })
+  startingAt: Date;
+
+  @Field(() => Date)
+  @Column({ type: 'timestamptz', name: 'finishing_at', nullable: false })
+  finishingAt: Date;
 
   @Field(() => Date)
   @CreateDateColumn({ type: 'timestamptz', name: 'created_at' })
@@ -46,8 +61,4 @@ export class User extends BaseEntity {
   @Field(() => Date, { nullable: true })
   @DeleteDateColumn({ type: 'timestamptz', name: 'deleted_at' })
   deletedAt: Date;
-
-  @Field(() => [Event])
-  @OneToMany(() => Event, (event) => event.createdBy)
-  createdEvents: Event[];
 }
