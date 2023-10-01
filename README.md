@@ -46,3 +46,7 @@ yarn migration:down
 ## API playground
 
 There is an API playground on the `/api/graphql` route.
+
+## Set up DB for test
+
+Set `DATABASE_SYNCHRONIZE` env var to true.
